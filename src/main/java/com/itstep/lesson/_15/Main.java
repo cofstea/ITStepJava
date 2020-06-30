@@ -1,7 +1,5 @@
 package com.itstep.lesson._15;
 
-import java.time.Duration;
-
 import com.itstep.lesson._17.MySingleObject;
 
 public class Main {

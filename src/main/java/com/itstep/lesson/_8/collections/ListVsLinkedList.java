@@ -2,7 +2,6 @@ package com.itstep.lesson._8.collections;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 public class ListVsLinkedList {
 
