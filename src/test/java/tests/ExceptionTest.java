@@ -1,7 +1,9 @@
+package tests;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class ExceptionTestClass {
+public class ExceptionTest {
 
     @Test
     public void testException() {

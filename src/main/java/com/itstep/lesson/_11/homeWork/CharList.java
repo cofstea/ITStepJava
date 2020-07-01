@@ -35,15 +35,15 @@ public class CharList {
         return line;
     }
 
-    int length() {
+    public int length() {
         return internalCharList.size();
     }
 
-    char charAt(int index) {
+    public char charAt(int index) {
         return internalCharList.get(index);
     }
 
-    int indexOf(char c) {
+    public int indexOf(char c) {
         if (contains(c)) {
 
             for (int i = 0; i < internalCharList.size(); i++) {
@@ -55,36 +55,36 @@ public class CharList {
         return -1;
     }
 
-    CharList subString(int start, int end) {
+    public CharList subString(int start, int end) {
         String stringCut = this.toString().substring(start, end);
         return new CharList(stringCut);
     }
 
-    CharList removeDuplicates() {
+    public CharList removeDuplicates() {
         HashSet<Character> withoutDuplicates = new HashSet<>(internalCharList);
         return new CharList(new ArrayList<>(withoutDuplicates));
     }
 
-    CharList removeAll(Character c) {
+    public CharList removeAll(Character c) {
         ArrayList<Character> tempList = new ArrayList<>(internalCharList);
         tempList.removeAll(Collections.singletonList(c));
         return new CharList(tempList);
     }
 
-    boolean isEmpty() {
+    public boolean isEmpty() {
         return internalCharList.isEmpty();
     }
 
-    boolean contains(Character c) {
+    public boolean contains(Character c) {
         return internalCharList.contains(c);
     }
 
-    CharList clearList() {
+    public CharList clearList() {
         internalCharList.clear();
         return this;
     }
 
-    CharList sortList() {
+    public CharList sortList() {
         Collections.sort(internalCharList);
         return this;
     }
@@ -111,14 +111,14 @@ public class CharList {
         return internalCharList != null ? internalCharList.hashCode() : 0;
     }
 
-    CharList reverseList() {
+    public CharList reverseList() {
         ArrayList<Character> temp = new ArrayList<>(internalCharList);
         Collections.reverse(temp);
 
         return new CharList(temp);
     }
 
-    CharList mixedList() {
+    public CharList mixedList() {
         Collections.shuffle(internalCharList);
         return this;
     }
@@ -128,35 +128,35 @@ public class CharList {
         return new CharList(temp);
     }
 
-   public CharList concat(CharList charList) {
+    public CharList concat(CharList charList) {
         // this.charList.addAll(charList.charList);
         // return this;
         String temp = this.toString().concat(charList.toString());
         return new CharList(temp);
     }
 
-    CharList replaceFirst(Character old, Character newOne) {
+    public CharList replaceFirst(Character old, Character newOne) {
         String temp = toString().replaceFirst(String.valueOf(old), String.valueOf(newOne));
         return new CharList(temp);
     }
 
-    CharList replaceLast(Character old, Character newOne) {
+    public CharList replaceLast(Character old, Character newOne) {
         return reverseList().replaceFirst(old, newOne);
     }
 
-    boolean endsWith(CharList charList) {
+    public boolean endsWith(CharList charList) {
         return this.toString().endsWith(charList.toString());
     }
 
-    CharList toLowerCase() {
+    public CharList toLowerCase() {
         return new CharList(this.toString().toLowerCase());
     }
 
-    CharList toUpperCase() {
+    public CharList toUpperCase() {
         return new CharList(this.toString().toUpperCase());
     }
 
-    boolean isPalindrome() {
+    public boolean isPalindrome() {
         CharList lastHalf = subString(length() / 2, length() - 1);
         return this.toString().startsWith(lastHalf.reverseList().toString());
     }
