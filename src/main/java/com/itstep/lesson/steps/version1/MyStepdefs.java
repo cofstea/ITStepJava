@@ -17,6 +17,7 @@ import com.itstep.lesson.pages.AbstractPage;
 import com.itstep.lesson.selenium.Browser;
 import com.itstep.lesson.utils.ReflectionUtils;
 import com.itstep.lesson.utils.ScenarioContext;
+import com.itstep.lesson.utils.ScreenshotUtils;
 
 import static com.itstep.lesson.utils.ScenarioDataKey.CURRENT_PAGE;
 
@@ -45,6 +46,7 @@ public class MyStepdefs {
         AbstractPage page = ReflectionUtils.getPageObject(pageName);
         MatcherAssert.assertThat(Browser.getBrowser().getCurrentUrl(), containsString(page.getPageUrl()));
         ScenarioContext.setContext(CURRENT_PAGE.name(), page);
+        ScreenshotUtils.takeScreenshot(pageName);
         logger.info("User is on the {} page", pageName);
     }
 
@@ -52,6 +54,7 @@ public class MyStepdefs {
     @When("user click to {string} button")
     public void userClicksToAddToCartButton(String buttonName) throws IllegalAccessException {
         WebElement button = ReflectionUtils.getWebElement(buttonName);
+        ScreenshotUtils.takeScreenshotOfElement(buttonName, button);
         button.click();
         logger.info("User clicks to {} button", buttonName);
     }
@@ -117,6 +120,7 @@ public class MyStepdefs {
     public void userTypesNewEmailIntoField(String elementName) throws IllegalAccessException {
         WebElement element = ReflectionUtils.getWebElement(elementName);
         element.sendKeys((String) ScenarioContext.getContext("New Email"));
+        ScreenshotUtils.takeScreenshotOfElement(elementName, element);
     }
 
 }

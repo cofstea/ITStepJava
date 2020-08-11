@@ -8,9 +8,11 @@ import org.slf4j.LoggerFactory;
 
 import com.itstep.lesson.selenium.Browser;
 import com.itstep.lesson.utils.ScenarioContext;
+import com.itstep.lesson.utils.ScreenshotUtils;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 
 public class UiHook {
 
@@ -27,12 +29,25 @@ public class UiHook {
     }
 
     @Before
+    public void setupReport(Scenario scenario) {
+        System.setProperty("cucumber.reporting.config.file", "src/test/resources/cucumber-reporting.properties");
+        ScreenshotUtils.setScenario(scenario);
+    }
+
+    @Before
     public void creatNewEmail() {
         String email = "bivolconstantin" + System.currentTimeMillis() + "@getnada.com";
         ScenarioContext.setContext("New Email", email);
     }
 
-    @After
+    @After(order = 100)
+    public void onFail(Scenario scenario) {
+        if (scenario.isFailed()) {
+            ScreenshotUtils.takeScreenshot("onFail");
+        }
+    }
+
+    @After(order = 1)
     public void tearDown() {
         Browser.quitDriver();
         ScenarioContext.clearContext();

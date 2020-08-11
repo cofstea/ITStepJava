@@ -65,6 +65,11 @@
             <artifactId>hamcrest-library</artifactId>
             <version>2.2</version>
         </dependency>
+        <dependency>
+            <groupId>de.monochromata.cucumber</groupId>
+            <artifactId>reporting-plugin</artifactId>
+            <version>4.0.60</version>
+        </dependency>
     </dependencies>
 
     <build>
