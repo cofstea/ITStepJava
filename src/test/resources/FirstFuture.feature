@@ -38,11 +38,11 @@ Feature: Add to cart functionality
     When user click to 'Add to cart' button
     Then product is added to database
     And user is on the 'Checkout' page
-    And list of
-      | Id | Name      | Price | Quantity     |
-      | 1  | Baby Doll | 20    | <Quantity 1> |
-      | 12 | Car       | 10    | <Quantity 2> |
-      | 13 | Tedy bear | 50    | <Quantity 3> |
+    And user completes following fields
+      | Field            | Value     |
+      | email            | Baby Doll |
+      | password         | Car       |
+      | confirm password | Tedy bear |
 
     @HomePage @Clothes
     Examples:

@@ -1,14 +1,6 @@
 package com.itstep.lesson.steps.version1;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.List;
-import java.util.Map;
-
-import org.hamcrest.MatcherAssert;
-import org.openqa.selenium.WebElement;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import static com.itstep.lesson.utils.ScenarioDataKey.CURRENT_PAGE;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 
@@ -18,15 +10,19 @@ import com.itstep.lesson.selenium.Browser;
 import com.itstep.lesson.utils.ReflectionUtils;
 import com.itstep.lesson.utils.ScenarioContext;
 import com.itstep.lesson.utils.ScreenshotUtils;
-
-import static com.itstep.lesson.utils.ScenarioDataKey.CURRENT_PAGE;
-
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.ParameterType;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+import java.util.Map;
+import org.hamcrest.MatcherAssert;
+import org.openqa.selenium.WebElement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MyStepdefs {
 
@@ -78,18 +74,18 @@ public class MyStepdefs {
         logger.info("Type of {}", type.name().toLowerCase());
     }
 
-    @And("list of")
-    public void listOf(DataTable dataTable) {
+    @And("user completes following fields")
+    public void listOf(DataTable dataTable) throws IllegalAccessException {
         List<Map<String, String>> listOfMaps = dataTable.asMaps();
 
         for (Map<String, String> map : listOfMaps) {
-            String id = map.get("Id");
-            String name = map.get("Name");
-            String price = map.get("Price");
-            String quantity = map.get("Quantity");
-
-            logger.info("{} for id {} for price {} of quantity {}",
-                    name, id, price, quantity);
+            String field = map.get("Field");
+            String value = map.get("Value");
+            // String price = map.get("Price");
+            // String quantity = map.get("Quantity");
+            ReflectionUtils.getWebElement(field).sendKeys(value);
+            // logger.info("{} for id {} for price {} of quantity {}",
+            //         name, id, price, quantity);
 
         }
     }
