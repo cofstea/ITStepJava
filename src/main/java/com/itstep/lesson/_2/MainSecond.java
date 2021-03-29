@@ -10,6 +10,8 @@ public class MainSecond {
         double doubleNum = 5555555555554324234.55555555507777777777737437437437438743;
         float floatNum = 555555555555.555555555f;
 
+        System.out.println("New change");
+
         byte bMax = 127;
         // bMax = bMax * 2; //Explicit conversion error
         bMax++;// -128 -127 -126 .....0 1 2 ... 126 127
